@@ -1,0 +1,37 @@
+
+create database db2020 default character set utf8;
+
+use db2020;
+
+create table labTable
+(
+  id int auto_increment primary key, 
+  decimal_5_2 decimal(5, 2),
+  varchar_10 varchar(10)
+);
+
+insert into labTable
+  (decimal_5_2, varchar_10)
+values
+  (123.45, '1234567890');
+
+-- set sql_mode = 'traditional';
+-- Error:  999.99
+insert into labTable
+  (decimal_5_2, varchar_10)
+values
+  (1234.5, '1234567890');
+
+update labTable
+  set decimal_5_2 = 900, varchar_10 = 'ABC'
+  where id = 2;
+
+delete from labTable
+  where id = 2;
+
+show create table labTable;
+
+truncate table labTable;
+
+
+
